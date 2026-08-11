@@ -19,8 +19,11 @@ def get_embedder():
     return SentenceTransformer("all-MiniLM-L6-v2")
 
 @st.cache_resource
+def get_chroma_client():
+    return chromadb.EphemeralClient()
+
 def get_collection():
-    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    client = get_chroma_client()
     return client.get_or_create_collection("schedule_events")
 
 def load_events():
@@ -33,10 +36,8 @@ def event_text(e):
     return f"{e['title']} | {e['type']} | {e['date']} | {e['start']}-{e['end']} | {e['description']}"
 
 def rebuild_index():
-    # ChromaDB does not accept an empty metadata filter (where={})
-    # for delete(). Recreate the collection instead.
     events = load_events()
-    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    client = get_chroma_client()
     try:
         client.delete_collection("schedule_events")
     except Exception:
@@ -66,11 +67,14 @@ def normalize_date(text):
             delta = (idx - today.weekday()) % 7
             if delta == 0 and "next" in t: delta = 7
             return today + timedelta(days=delta)
-    m = re.search(r"\b(august|september|october|november|december|january|february|march|april|may|june|july)\s+(\d{1,2})(?:\s+(\d{4}))?", t)
+    m = re.search(r"\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+(\d{1,2})(?:\s+(\d{4}))?", t)
     if m:
         year = int(m.group(3) or today.year)
-        try: return datetime.strptime(f"{m.group(1)} {m.group(2)} {year}", "%B %d %Y").date()
-        except: pass
+        try:
+            return datetime.strptime(f"{m.group(1)} {m.group(2)} {year}", "%b %d %Y").date()
+        except:
+            try: return datetime.strptime(f"{m.group(1)} {m.group(2)} {year}", "%B %d %Y").date()
+            except: pass
     return None
 
 def parse_time(text):
@@ -142,9 +146,19 @@ def agent(user_query):
             candidates = get_schedule(user_query, target_date=d, top_k=5)
             if not candidates: return "I couldn't find the meeting to move."
             chosen = candidates[0]
-            return update_schedule("update", title=chosen["title"], event_date=chosen["date"],
-                                   start=f"{new_time//60:02d}:{new_time%60:02d}",
-                                   end=chosen["end"], event_type=chosen["type"], description=chosen["description"])
+            old_start = int(chosen["start"][:2]) * 60 + int(chosen["start"][3:])
+            old_end = int(chosen["end"][:2]) * 60 + int(chosen["end"][3:])
+            duration = max(30, old_end - old_start)
+            new_end = new_time + duration
+            return update_schedule(
+                "update",
+                title=chosen["title"],
+                event_date=chosen["date"],
+                start=f"{new_time//60:02d}:{new_time%60:02d}",
+                end=f"{new_end//60:02d}:{new_end%60:02d}",
+                event_type=chosen["type"],
+                description=chosen["description"]
+            )
         # Add/create/book
         if any(x in q for x in ["add ", "create ", "book ", "schedule "]):
             if not d: return "Please include the date (for example, August 15)."
