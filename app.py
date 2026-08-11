@@ -33,10 +33,15 @@ def event_text(e):
     return f"{e['title']} | {e['type']} | {e['date']} | {e['start']}-{e['end']} | {e['description']}"
 
 def rebuild_index():
+    # ChromaDB does not accept an empty metadata filter (where={})
+    # for delete(). Recreate the collection instead.
     events = load_events()
-    col = get_collection()
-    if col.count():
-        col.delete(where={})
+    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    try:
+        client.delete_collection("schedule_events")
+    except Exception:
+        pass
+    col = client.get_or_create_collection("schedule_events")
     if events:
         ids = [e["id"] for e in events]
         docs = [event_text(e) for e in events]
@@ -145,6 +150,8 @@ def agent(user_query):
             if not d: return "Please include the date (for example, August 15)."
             title = re.sub(r"^(add|create|book|schedule)\s+(a\s+)?", "", user_query, flags=re.I)
             title = re.split(r"\s+on\s+|\s+at\s+", title, flags=re.I)[0].strip() or "New meeting"
+            # Remove a trailing period from titles created from natural-language requests.
+            title = title.rstrip(".")
             stime = f"{t//60:02d}:{t%60:02d}" if t is not None else "09:00"
             return update_schedule("add", title=title, event_date=d, start=stime,
                                    end=f"{(t+60)//60:02d}:{(t+60)%60:02d}" if t is not None else "10:00")
