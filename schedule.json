@@ -1,0 +1,218 @@
+[
+  {
+    "id": "evt-001",
+    "title": "Team Standup",
+    "type": "meeting",
+    "date": "2026-08-12",
+    "start": "09:30",
+    "end": "10:00",
+    "description": "Daily engineering sync"
+  },
+  {
+    "id": "evt-002",
+    "title": "Data Analytics Workshop",
+    "type": "workshop",
+    "date": "2026-08-12",
+    "start": "14:00",
+    "end": "16:00",
+    "description": "Excel, SQL and dashboard practice"
+  },
+  {
+    "id": "evt-003",
+    "title": "Resume Update",
+    "type": "task",
+    "date": "2026-08-13",
+    "start": "11:00",
+    "end": "12:00",
+    "description": "Update resume for fresher roles"
+  },
+  {
+    "id": "evt-004",
+    "title": "Career Mentor Call",
+    "type": "appointment",
+    "date": "2026-08-14",
+    "start": "15:30",
+    "end": "16:00",
+    "description": "Discuss job search strategy"
+  },
+  {
+    "id": "evt-005",
+    "title": "Project Review",
+    "type": "meeting",
+    "date": "2026-08-15",
+    "start": "11:00",
+    "end": "12:00",
+    "description": "Review Schedule Assistant project"
+  },
+  {
+    "id": "evt-006",
+    "title": "Client Demo Workshop",
+    "type": "workshop",
+    "date": "2026-08-15",
+    "start": "15:00",
+    "end": "17:00",
+    "description": "Demo preparation and feedback"
+  },
+  {
+    "id": "evt-007",
+    "title": "Database Practice",
+    "type": "task",
+    "date": "2026-08-17",
+    "start": "10:00",
+    "end": "11:30",
+    "description": "Practice SQL joins and aggregations"
+  },
+  {
+    "id": "evt-008",
+    "title": "HR Interview",
+    "type": "appointment",
+    "date": "2026-08-18",
+    "start": "13:00",
+    "end": "14:00",
+    "description": "Mock HR interview"
+  },
+  {
+    "id": "evt-009",
+    "title": "Team Planning",
+    "type": "meeting",
+    "date": "2026-08-19",
+    "start": "09:00",
+    "end": "10:00",
+    "description": "Sprint planning"
+  },
+  {
+    "id": "evt-010",
+    "title": "Python Practice",
+    "type": "task",
+    "date": "2026-08-20",
+    "start": "16:00",
+    "end": "17:00",
+    "description": "Practice Python interview problems"
+  },
+  {
+    "id": "evt-011",
+    "title": "Tech Talk",
+    "type": "workshop",
+    "date": "2026-08-21",
+    "start": "11:00",
+    "end": "12:30",
+    "description": "Agentic AI and RAG fundamentals"
+  },
+  {
+    "id": "evt-012",
+    "title": "Doctor Appointment",
+    "type": "appointment",
+    "date": "2026-08-22",
+    "start": "10:30",
+    "end": "11:00",
+    "description": "Routine appointment"
+  },
+  {
+    "id": "evt-013",
+    "title": "Project Submission",
+    "type": "task",
+    "date": "2026-08-24",
+    "start": "17:00",
+    "end": "18:00",
+    "description": "Submit project documentation"
+  },
+  {
+    "id": "evt-014",
+    "title": "Placement Drive Briefing",
+    "type": "meeting",
+    "date": "2026-08-25",
+    "start": "12:00",
+    "end": "13:00",
+    "description": "Discuss upcoming recruitment drive"
+  },
+  {
+    "id": "evt-015",
+    "title": "Power BI Workshop",
+    "type": "workshop",
+    "date": "2026-08-26",
+    "start": "14:00",
+    "end": "16:00",
+    "description": "Build interactive dashboards"
+  },
+  {
+    "id": "evt-016",
+    "title": "Mock Technical Interview",
+    "type": "appointment",
+    "date": "2026-08-27",
+    "start": "10:00",
+    "end": "11:00",
+    "description": "Technical interview practice"
+  },
+  {
+    "id": "evt-017",
+    "title": "Weekly Review",
+    "type": "meeting",
+    "date": "2026-08-28",
+    "start": "18:00",
+    "end": "18:30",
+    "description": "Review weekly goals"
+  },
+  {
+    "id": "evt-018",
+    "title": "Portfolio Improvements",
+    "type": "task",
+    "date": "2026-08-29",
+    "start": "09:30",
+    "end": "11:00",
+    "description": "Improve GitHub and project portfolio"
+  },
+  {
+    "id": "evt-019",
+    "title": "Networking Call",
+    "type": "appointment",
+    "date": "2026-08-31",
+    "start": "15:00",
+    "end": "15:30",
+    "description": "Connect with industry contact"
+  },
+  {
+    "id": "evt-020",
+    "title": "Monthly Planning",
+    "type": "meeting",
+    "date": "2026-09-01",
+    "start": "10:00",
+    "end": "11:00",
+    "description": "Plan September goals"
+  },
+  {
+    "id": "evt-021",
+    "title": "RAG Workshop",
+    "type": "workshop",
+    "date": "2026-09-02",
+    "start": "14:00",
+    "end": "16:00",
+    "description": "Build retrieval-augmented applications"
+  },
+  {
+    "id": "evt-022",
+    "title": "Job Applications",
+    "type": "task",
+    "date": "2026-09-03",
+    "start": "09:00",
+    "end": "10:30",
+    "description": "Apply to relevant fresher roles"
+  },
+  {
+    "id": "evt-023",
+    "title": "Project Presentation",
+    "type": "meeting",
+    "date": "2026-09-04",
+    "start": "15:00",
+    "end": "16:00",
+    "description": "Present project progress"
+  },
+  {
+    "id": "evt-024",
+    "title": "Interview Preparation",
+    "type": "task",
+    "date": "2026-09-07",
+    "start": "17:00",
+    "end": "18:00",
+    "description": "Review common interview questions"
+  }
+]

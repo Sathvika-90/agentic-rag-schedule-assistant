@@ -1,0 +1,3 @@
+DEPLOYMENT STATUS: Not publicly deployed from this environment.
+PUBLIC URL: Not available.
+The complete deployable project is included in this folder/ZIP. Deploy app.py with requirements.txt and schedule.json to a Python hosting service, then replace this line with the resulting HTTPS URL before submission.

@@ -1,0 +1,4 @@
+streamlit==1.48.0
+chromadb==1.0.20
+sentence-transformers==5.1.0
+python-dateutil==2.9.0.post0
